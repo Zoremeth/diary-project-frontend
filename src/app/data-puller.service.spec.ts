@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DatapullerService } from './datapuller.service';
+import { DatapullerService } from './data-puller.service';
 
 describe('DatapullerService', () => {
   beforeEach(() => {

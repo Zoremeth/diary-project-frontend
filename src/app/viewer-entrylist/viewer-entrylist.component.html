@@ -1,21 +1,19 @@
-<div class="flexbox">
-  <mat-menu #appMenu="matMenu">
-    <button mat-menu-item>Settings</button>
-    <button mat-menu-item>Help</button>
-  </mat-menu>
-  <mat-list>
-    <h3 class="entries">Entries:</h3>
-    <mat-divider></mat-divider>
-    <mat-list-item *ngFor='let entry of dataPuller.getEntries()'>
-      <div class="flex-item">
-        <h3 mat-line (click)='alertEditor(entry.id)' class="date">{{entry.date}}</h3>
-        <button mat-icon-button [matMenuTriggerFor]="appMenu">
-          <mat-icon>more_vert</mat-icon>
-        </button>
-      </div>
-      <mat-divider></mat-divider>
-    </mat-list-item>
-  </mat-list>
+<mat-list color="accent" class="flexbox">
+  <h3 class="entries">Entries:</h3>
   <mat-divider></mat-divider>
+  <mat-list-item *ngFor='let entry of dataPuller.getEntries()'>
+    <div class="flex-item">
+      <h3 mat-line (click)='alertEditor(entry.id)' class="date">{{entry.date}}</h3>
+      <button mat-icon-button [matMenuTriggerFor]="appMenu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </div>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
+<mat-divider></mat-divider>
 
-</div>
+<mat-menu #appMenu="matMenu">
+  <button mat-menu-item>Settings</button>
+  <button mat-menu-item>Help</button>
+</mat-menu>

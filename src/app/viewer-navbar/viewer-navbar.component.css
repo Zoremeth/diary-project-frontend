@@ -2,12 +2,8 @@
   display: flex;
   flex-flow: row;
   justify-content: space-around;
-  background-color: #00ff9d;
-  height: 50px;
 }
 
 p {
   cursor: pointer;
-  padding-top: 15px;
-  color: white;
 }

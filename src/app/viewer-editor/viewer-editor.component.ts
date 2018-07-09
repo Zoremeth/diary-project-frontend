@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { DatapullerService } from '../datapuller.service';
+import { DatapullerService } from '../data-puller.service';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-viewer-editor',
@@ -17,6 +18,10 @@ export class ViewerEditorComponent implements OnInit {
 
   getContent(): String {
     return this.dataPuller.getContent(this.dataPuller.getCurrentEntry());
+  }
+
+  openEditor() {
+    // Do something
   }
 
   ngOnInit() {

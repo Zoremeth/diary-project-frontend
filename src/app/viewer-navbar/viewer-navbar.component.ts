@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatapullerService } from '../datapuller.service';
+import { DatapullerService } from '../data-puller.service';
 
 @Component({
   selector: 'app-viewer-navbar',

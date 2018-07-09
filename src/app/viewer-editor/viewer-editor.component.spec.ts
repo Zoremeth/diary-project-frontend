@@ -8,9 +8,9 @@ describe('ViewerEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewerEditorComponent ]
+      declarations: [ViewerEditorComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

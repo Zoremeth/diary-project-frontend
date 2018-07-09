@@ -1,11 +1,13 @@
 <div class="flexbox" *ngIf='this.dataPuller.getCurrentEntry() != 0; else elseBlock'>
-  <h2>Date: {{getDate()}}</h2>
+  <h2 mat-line>Date: {{getDate()}}</h2>
   <mat-divider></mat-divider>
-  <div>{{getContent()}}</div>
+  <div mat-line>{{getContent()}}</div>
 </div>
 <ng-template #elseBlock>
   <div class="flexbox">
     <p>Welcome!</p>
     <p>Start making an entry.</p>
+    <p>Henlo there</p>
+    <button mat-raised-button (click)="openEditor()">Add Entry</button>
   </div>
 </ng-template>
