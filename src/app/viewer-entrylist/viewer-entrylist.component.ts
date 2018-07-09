@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatapullerService } from '../datapuller.service';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerEntrylistComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataPuller: DatapullerService) { }
 
   ngOnInit() {
+  }
+
+  alertEditor(id: number) {
+    this.dataPuller.setCurrentEntry(id);
   }
 
 }

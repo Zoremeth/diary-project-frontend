@@ -1,8 +1,19 @@
 :host {
   width: 100%;
+  padding-left: 50px;
+  padding-top: 20px;
+  background-color: #ececec;
 }
 
 .flexbox {
-  background-color: #00e1ff;
   height: 100%;
+}
+
+h2 {
+  padding-bottom: 10px;
+}
+
+mat-divider {
+  padding-top: 10px;
+  padding-bottom: 10px;
 }

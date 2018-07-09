@@ -7,6 +7,9 @@ import { ViewerComponent } from './viewer/viewer.component';
 import { ViewerNavbarComponent } from './viewer-navbar/viewer-navbar.component';
 import { ViewerEntrylistComponent } from './viewer-entrylist/viewer-entrylist.component';
 import { ViewerEditorComponent } from './viewer-editor/viewer-editor.component';
+import { MatListModule } from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { ViewerEditorComponent } from './viewer-editor/viewer-editor.component';
     ViewerEditorComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MatButtonModule,
+    MatListModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

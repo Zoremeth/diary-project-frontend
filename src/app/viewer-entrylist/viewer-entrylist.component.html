@@ -1,6 +1,12 @@
 <div class="flexbox">
-  <li>
-    <ul>test</ul>
-    <ul>test</ul>
-  </li>
+  <mat-list>
+    <h4>Entries:</h4>
+    <mat-divider></mat-divider>
+    <mat-list-item *ngFor='let entry of dataPuller.getEntries()'>
+      <h4 mat-line (click)='alertEditor(entry.id)'>{{entry.date}}</h4>
+      <mat-divider></mat-divider>
+    </mat-list-item>
+  </mat-list>
+  <mat-divider></mat-divider>
+
 </div>

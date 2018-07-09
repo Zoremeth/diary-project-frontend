@@ -5,3 +5,8 @@
   background-color: #00ff9d;
   height: 50px;
 }
+
+p {
+  padding-top: 15px;
+  color: white;
+}
