@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatapullerService } from '../datapuller.service';
 
 @Component({
   selector: 'app-viewer-navbar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewerNavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataPuller: DatapullerService) { }
 
   ngOnInit() {
   }

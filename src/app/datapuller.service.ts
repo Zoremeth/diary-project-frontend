@@ -13,19 +13,19 @@ export class DatapullerService {
 
   entries: Entry[] = [
     {
-      id: 0,
-      date: '9-7-2018',
-      content: 'Hello'
-    },
-    {
       id: 1,
-      date: '10-7-2018',
-      content: 'Hello 2'
+      date: '9-7-2018',
+      content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas suscipit arcu vel pretium dapibus. Praesent vehicula erat sed pharetra maximus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque hendrerit ex fringilla, dictum enim sed, pulvinar magna. Suspendisse non massa velit. Pellentesque quis nisi in sapien tempus hendrerit mollis vitae diam. Morbi sagittis nec purus quis rhoncus. Maecenas molestie nisi nec augue accumsan, viverra condimentum risus fringilla. Suspendisse at purus turpis. In venenatis ligula eget mi tempus tempor. Nulla facilisi.'
     },
     {
       id: 2,
+      date: '10-7-2018',
+      content: 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog. The quick brown fox jumps over the lazy dog.'
+    },
+    {
+      id: 3,
       date: '11-7-2018',
-      content: 'Hello 3'
+      content: 'Hello World!'
     }
 
   ];
@@ -36,7 +36,7 @@ export class DatapullerService {
   }
 
   getDate(id: number): String {
-    return this.entries[id].date;
+    return this.entries[id - 1].date;
   }
 
   setCurrentEntry(id: number) {
@@ -48,7 +48,7 @@ export class DatapullerService {
   }
 
   getContent(id: number): String {
-    return this.entries[id].content;
+    return this.entries[id - 1].content;
   }
 
 }
