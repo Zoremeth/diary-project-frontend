@@ -30,9 +30,9 @@ export class DatapullerService {
 
   ];
 
-  getEntries(): Entry[] {
+  getEntries(): Observable<Entry[]> {
     // To-DO: Use observable
-    return this.entries;
+    return of(this.entries);
   }
 
   getDate(id: number): String {

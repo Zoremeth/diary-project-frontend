@@ -1,20 +1,11 @@
 :host {
-  width: 100%;
-  padding-left: 50px;
+  display: flex;
+  justify-content: center;
+  height: 100%;
   padding-top: 20px;
-  padding-right: 200px;
-  /* background-color: #ececec; */
 }
 
 .flexbox {
-  height: 100%;
+  width: 50%;
 }
 
-h2 {
-  padding-bottom: 10px;
-}
-
-mat-divider {
-  padding-top: 10px;
-  padding-bottom: 10px;
-}

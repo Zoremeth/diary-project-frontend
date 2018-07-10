@@ -14,6 +14,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     MatMenuModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatSidenavModule
+    MatSidenavModule,
+    MatCardModule
   ],
-  providers: [],
+  providers: [ViewerNavbarComponent, ViewerComponent, ViewerEntrylistComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
