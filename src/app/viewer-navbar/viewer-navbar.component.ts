@@ -10,7 +10,7 @@ import { ViewerComponent } from '../viewer/viewer.component';
 
 export class ViewerNavbarComponent implements OnInit {
 
-  private icon: String = 'menu';
+  private icon: String = 'close';
 
   constructor(public dataPuller: DatapullerService, public sideNav: ViewerComponent) { }
 
@@ -21,15 +21,13 @@ export class ViewerNavbarComponent implements OnInit {
     this.icon = 'menu';
   }
 
-  open(): void {
-    this.icon = 'close';
-  }
-
   toggleMenu(): void {
     if (this.icon === 'menu') {
+      alert('Opening sidenav');
       this.sideNav.open();
       this.icon = 'close';
     } else {
+      alert('Closing sidenav');
       this.sideNav.close();
       this.icon = 'menu';
     }

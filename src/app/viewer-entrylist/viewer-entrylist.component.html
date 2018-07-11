@@ -2,7 +2,7 @@
   <h3 class="entries">Entries:</h3>
   <mat-divider></mat-divider>
   <mat-list-item *ngFor='let entry of getEntries()' class="flex-item">
-    <h3 mat-line (click)='alertEditor(entry.id); this.menuButton.close(); this.sideNav.close()' class="date">{{entry.date}}</h3>
+    <h3 mat-line (click)='alertEditor(entry.id); this.menuButton.close()' class="date">{{entry.date}}</h3>
     <button mat-icon-button>
       <mat-icon>more_vert</mat-icon>
     </button>

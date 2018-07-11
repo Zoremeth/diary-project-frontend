@@ -12,7 +12,7 @@ import { ViewerNavbarComponent } from '../viewer-navbar/viewer-navbar.component'
 export class ViewerEntrylistComponent implements OnInit {
 
   entries!: Entry[];
-  constructor(public dataPuller: DatapullerService, public sideNav: ViewerComponent, public menuButton: ViewerNavbarComponent) { }
+  constructor(public dataPuller: DatapullerService, public menuButton: ViewerNavbarComponent) { }
 
   ngOnInit() {
   }
