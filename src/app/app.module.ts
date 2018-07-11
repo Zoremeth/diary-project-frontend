@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '../../node_modules/@angular/material';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,7 @@ import { MatCardModule } from '@angular/material/card';
     ViewerComponent,
     ViewerNavbarComponent,
     ViewerEntrylistComponent,
-    ViewerEditorComponent
+    ViewerEditorComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,8 @@ import { MatCardModule } from '@angular/material/card';
     BrowserAnimationsModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatCardModule
+    MatCardModule,
+    MatDialogModule
   ],
   providers: [ViewerNavbarComponent, ViewerComponent, ViewerEntrylistComponent],
   bootstrap: [AppComponent]

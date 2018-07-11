@@ -1,6 +1,6 @@
 <app-viewer-navbar></app-viewer-navbar>
 <mat-drawer-container>
-  <mat-drawer mode="side" [opened]="isOpened">
+  <mat-drawer mode="side" opened="{{getState()}}">
     <app-viewer-entrylist></app-viewer-entrylist>
   </mat-drawer>
   <mat-drawer-content>

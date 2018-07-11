@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ViewerNavbarComponent } from '../viewer-navbar/viewer-navbar.component';
+import { SidebarService } from '../sidebar.service';
 
 @Component({
   selector: 'app-viewer',
@@ -8,12 +9,17 @@ import { ViewerNavbarComponent } from '../viewer-navbar/viewer-navbar.component'
 })
 export class ViewerComponent implements OnInit {
 
-  constructor() { }
+  constructor(public sidebar: SidebarService) { }
 
   private isOpened!: boolean;
 
   ngOnInit() {
     this.isOpened = true;
+  }
+
+  getState(): boolean {
+    this.sidebar.getState().subscribe(state => this.isOpened = state);
+    return this.isOpened;
   }
 
   close(): void {

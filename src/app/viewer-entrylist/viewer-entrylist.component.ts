@@ -1,8 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { DatapullerService } from '../data-puller.service';
 import { Entry } from '../entry';
-import { ViewerComponent } from '../viewer/viewer.component';
-import { ViewerNavbarComponent } from '../viewer-navbar/viewer-navbar.component';
+import { SidebarService } from '../sidebar.service';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -12,7 +11,8 @@ import { ViewerNavbarComponent } from '../viewer-navbar/viewer-navbar.component'
 export class ViewerEntrylistComponent implements OnInit {
 
   entries!: Entry[];
-  constructor(public dataPuller: DatapullerService, public menuButton: ViewerNavbarComponent) { }
+
+  constructor(public dataPuller: DatapullerService, public sidebar: SidebarService) { }
 
   ngOnInit() {
   }
@@ -20,6 +20,16 @@ export class ViewerEntrylistComponent implements OnInit {
   getEntries(): Entry[] {
     this.dataPuller.getEntries().subscribe(entries => this.entries = entries);
     return this.entries;
+  }
+
+  rename(id: number) {
+    console.log('Renaming: ' + id);
+    // OPEN DIALOG
+  }
+
+  delete(id: number) {
+    console.log('Deleting: ' + id);
+    // OPEN CONFIRMATION DIALOG
   }
 
   alertEditor(id: number) {

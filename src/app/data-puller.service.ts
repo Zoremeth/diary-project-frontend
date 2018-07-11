@@ -35,7 +35,7 @@ export class DatapullerService {
     return of(this.entries);
   }
 
-  getDate(id: number): String {
+  getDate(id: number): string {
     return this.entries[id - 1].date;
   }
 
@@ -47,7 +47,7 @@ export class DatapullerService {
     return this.currentEntry;
   }
 
-  getContent(id: number): String {
+  getContent(id: number): string {
     return this.entries[id - 1].content;
   }
 
