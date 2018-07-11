@@ -10,15 +10,14 @@
   flex-direction: column;
 }
 
-.entries {
-  padding-left: 5px;
-  padding-bottom: 8px;
-}
-
 .flex-item {
   width: 100%;
   display: flex;  
   justify-content: space-between;
+}
+
+.entries-list {
+  height: 80%;
 }
 
 .title {

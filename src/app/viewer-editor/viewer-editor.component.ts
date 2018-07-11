@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DatapullerService } from '../data-puller.service';
+import { EntryService } from '../data-puller.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -10,18 +10,18 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ViewerEditorComponent implements OnInit {
 
 
-  constructor(public dataPuller: DatapullerService) { }
+  constructor(public entryService: EntryService) { }
 
   getTitle(): string {
-    return this.dataPuller.getTitle(this.dataPuller.getCurrentEntry());
+    return this.entryService.getTitle(this.entryService.getCurrentEntry());
   }
 
   getDate(): string {
-    return this.dataPuller.getDate(this.dataPuller.getCurrentEntry());
+    return this.entryService.getDate(this.entryService.getCurrentEntry());
   }
 
   getContent(): string {
-    return this.dataPuller.getContent(this.dataPuller.getCurrentEntry());
+    return this.entryService.getContent(this.entryService.getCurrentEntry());
   }
 
   openEditor() {

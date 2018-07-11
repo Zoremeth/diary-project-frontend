@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { DatapullerService } from './data-puller.service';
+import { EntryService } from './data-puller.service';
 
-describe('DatapullerService', () => {
+describe('EntryService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DatapullerService]
+      providers: [EntryService]
     });
   });
 
-  it('should be created', inject([DatapullerService], (service: DatapullerService) => {
+  it('should be created', inject([EntryService], (service: EntryService) => {
     expect(service).toBeTruthy();
   }));
 });

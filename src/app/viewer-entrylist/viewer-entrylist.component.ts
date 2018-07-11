@@ -1,8 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DatapullerService, Entry } from '../data-puller.service';
+import { EntryService, Entry } from '../data-puller.service';
 import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
+import { ViewerEntrylistRenameDialogComponent } from '../viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -13,19 +14,14 @@ export class ViewerEntrylistComponent implements OnInit {
 
   entries: Entry[] = [];
 
-  constructor(public dataPuller: DatapullerService, public sidebar: SidebarService, public dialog: MatDialog) { }
+  constructor(public entryService: EntryService, public sidebar: SidebarService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
 
   getEntries(): Entry[] {
-    this.dataPuller.getEntries().subscribe(entries => this.entries = entries);
+    this.entryService.getEntries().subscribe(entries => this.entries = entries);
     return this.entries;
-  }
-
-  rename(id: number) {
-    console.log('Renaming: ' + id);
-    // OPEN DIALOG
   }
 
   delete(id: number) {
@@ -33,12 +29,22 @@ export class ViewerEntrylistComponent implements OnInit {
     const dialogRef = this.dialog.open(ViewerEntrylistDeleteDialogComponent);
     dialogRef.afterClosed().subscribe(deleteConfirmed => {
       if (deleteConfirmed) {
-        this.dataPuller.deleteEntry(id);
+        this.entryService.deleteEntry(id);
       }
     });
   }
 
+  rename(id: number): void {
+    const titleFromId = this.entryService.getTitle(id);
+    const dialogRef = this.dialog.open(ViewerEntrylistRenameDialogComponent, {
+      data: { title: titleFromId }
+    });
+    dialogRef.afterClosed().subscribe(newString => {
+      this.entryService.setTitle(id, newString);
+    });
+  }
+
   alertEditor(id: number) {
-    this.dataPuller.setCurrentEntry(id);
+    this.entryService.setCurrentEntry(id);
   }
 }

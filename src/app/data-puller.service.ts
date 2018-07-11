@@ -12,7 +12,7 @@ export interface Entry {
 @Injectable({
   providedIn: 'root'
 })
-export class DatapullerService {
+export class EntryService {
 
   constructor() { }
 
@@ -65,15 +65,35 @@ export class DatapullerService {
     return this.entries[id].content;
   }
 
+  setTitle(id: number, newString: string): void {
+    this.entries[id].title = newString;
+  }
+
+  addEntry(title: string, date: string, content: string) {
+    const entry: Entry = {
+      id: this.entries.length + 1,
+      date: date,
+      title: title,
+      content: content,
+    };
+    this.entries.push(entry);
+    console.log(this.entries);
+  }
+
   deleteEntry(id: number): void {
     console.log(id);
     this.entries.splice(id, 1);
+    this.reorderArray();
+    console.log('Deleted.');
+  }
+
+  reorderArray(): void {
+    // Not efficient when handling big arrays.
     let counter = 0;
     this.entries.forEach(element => {
       element.id = counter;
       counter++;
     });
-    console.log('Deleted.');
   }
 
 }
