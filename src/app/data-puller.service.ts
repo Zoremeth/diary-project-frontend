@@ -51,4 +51,9 @@ export class DatapullerService {
     return this.entries[id - 1].content;
   }
 
+  deleteEntry(id: number): void {
+    alert(id);
+    alert('Deleted sucessfully');
+  }
+
 }

@@ -15,7 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule } from '../../node_modules/@angular/material';
+import { MatDialogModule } from '@angular/material';
+import { ViewerEntrylistDeleteDialogComponent } from './viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { MatDialogModule } from '../../node_modules/@angular/material';
     ViewerNavbarComponent,
     ViewerEntrylistComponent,
     ViewerEditorComponent,
+    ViewerEntrylistDeleteDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,10 @@ import { MatDialogModule } from '../../node_modules/@angular/material';
     MatCardModule,
     MatDialogModule
   ],
-  providers: [ViewerNavbarComponent, ViewerComponent, ViewerEntrylistComponent],
+  entryComponents: [
+    ViewerEntrylistDeleteDialogComponent,
+  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,8 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { DatapullerService } from '../data-puller.service';
 import { Entry } from '../entry';
 import { SidebarService } from '../sidebar.service';
+import { MatDialog } from '@angular/material';
+import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -11,8 +13,9 @@ import { SidebarService } from '../sidebar.service';
 export class ViewerEntrylistComponent implements OnInit {
 
   entries!: Entry[];
+  dialogResult = '';
 
-  constructor(public dataPuller: DatapullerService, public sidebar: SidebarService) { }
+  constructor(public dataPuller: DatapullerService, public sidebar: SidebarService, public dialog: MatDialog) { }
 
   ngOnInit() {
   }
@@ -30,6 +33,19 @@ export class ViewerEntrylistComponent implements OnInit {
   delete(id: number) {
     console.log('Deleting: ' + id);
     // OPEN CONFIRMATION DIALOG
+  }
+
+  openDeleteDialog(id: number): void {
+    const dialogRef = this.dialog.open(ViewerEntrylistDeleteDialogComponent);
+
+    dialogRef.afterClosed().subscribe(result => this.dialogResult = result);
+
+    // Does not wait for the dialogResult to be updated.
+    if (this.dialogResult === 'confirmed') {
+      this.dataPuller.deleteEntry(id);
+    } else {
+      alert('Something went wrong');
+    }
   }
 
   alertEditor(id: number) {
