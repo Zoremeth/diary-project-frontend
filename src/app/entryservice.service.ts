@@ -16,7 +16,7 @@ export class EntryService {
 
   constructor() { }
 
-  private currentEntry = 0;
+  private currentEntry = -1;
 
   entries: Entry[] = [
     {
@@ -45,30 +45,6 @@ export class EntryService {
     return of(this.entries);
   }
 
-  getTitle(id: number): string {
-    return this.entries[id].title;
-  }
-
-  getDate(id: number): string {
-    return this.entries[id].date;
-  }
-
-  setCurrentEntry(id: number) {
-    this.currentEntry = id;
-  }
-
-  getCurrentEntry() {
-    return this.currentEntry;
-  }
-
-  getContent(id: number): string {
-    return this.entries[id].content;
-  }
-
-  setTitle(id: number, newString: string): void {
-    this.entries[id].title = newString;
-  }
-
   addEntry(title: string, date: string, content: string) {
     const entry: Entry = {
       id: this.entries.length + 1,
@@ -85,6 +61,30 @@ export class EntryService {
     this.entries.splice(id, 1);
     this.reorderArray();
     console.log('Deleted.');
+  }
+
+  getTitle(id: number): string {
+    return this.entries[id].title;
+  }
+
+  setTitle(id: number, newString: string): void {
+    this.entries[id].title = newString;
+  }
+
+  getDate(id: number): string {
+    return this.entries[id].date;
+  }
+
+  getContent(id: number): string {
+    return this.entries[id].content;
+  }
+
+  getCurrentEntry(): number {
+    return this.currentEntry;
+  }
+
+  setCurrentEntry(id: number) {
+    this.currentEntry = id;
   }
 
   reorderArray(): void {

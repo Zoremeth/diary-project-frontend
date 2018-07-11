@@ -1,8 +1,4 @@
 .flexbox {
   display: flex;
-  justify-content: left;
-}
-
-.spacer {
-  flex-grow: 1;
+  justify-content: space-between;
 }

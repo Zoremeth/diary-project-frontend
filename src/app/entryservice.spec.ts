@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { EntryService } from './data-puller.service';
+import { EntryService } from './entryservice.service';
 
 describe('EntryService', () => {
   beforeEach(() => {

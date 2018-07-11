@@ -18,4 +18,9 @@
       <mat-divider></mat-divider>
     </mat-list-item>
   </div>
+  <div class="fab-button">
+    <button mat-fab (click)="this.entryService.addEntry('test', 'test', 'test')">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
 </mat-list>

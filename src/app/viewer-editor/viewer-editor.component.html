@@ -1,4 +1,4 @@
-<mat-card class="flexbox">
+<!-- <mat-card class="flexbox">
   <mat-card-header>
     <mat-card-title>{{getTitle()}}</mat-card-title>
     <mat-card-subtitle>{{getDate()}}</mat-card-subtitle>
@@ -6,4 +6,5 @@
   <mat-card-content>
     {{getContent()}}
   </mat-card-content>
-</mat-card>
+</mat-card> -->
+<quill-editor *ngIf="this.entryService.getCurrentEntry() !== -1" [(ngModel)]="data"></quill-editor>

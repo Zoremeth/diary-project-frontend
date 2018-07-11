@@ -18,8 +18,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDialogModule, MatSelectModule, MatInputModule } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from './viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '../../node_modules/@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { ViewerEntrylistRenameDialogComponent } from './viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
+import { QuillModule } from 'ngx-quill';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ViewerEntrylistRenameDialogComponent } from './viewer-entrylist-rename-
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    QuillModule,
   ],
   entryComponents: [
     ViewerEntrylistDeleteDialogComponent,

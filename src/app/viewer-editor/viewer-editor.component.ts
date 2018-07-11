@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { EntryService } from '../data-puller.service';
+import { EntryService } from '../entryservice.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
@@ -9,8 +9,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 })
 export class ViewerEditorComponent implements OnInit {
 
-
   constructor(public entryService: EntryService) { }
+  data = 'Start typing here.';
 
   getTitle(): string {
     return this.entryService.getTitle(this.entryService.getCurrentEntry());
@@ -24,8 +24,10 @@ export class ViewerEditorComponent implements OnInit {
     return this.entryService.getContent(this.entryService.getCurrentEntry());
   }
 
-  openEditor() {
-    // Do something
+  setData(): void {
+    let id;
+    id = this.entryService.getCurrentEntry();
+    this.data = this.entryService.getContent(id);
   }
 
   ngOnInit() {

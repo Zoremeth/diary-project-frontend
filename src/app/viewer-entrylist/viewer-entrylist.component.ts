@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { EntryService, Entry } from '../data-puller.service';
+import { EntryService, Entry } from '../entryservice.service';
 import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';

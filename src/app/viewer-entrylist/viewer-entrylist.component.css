@@ -18,10 +18,17 @@
 
 .entries-list {
   height: 80%;
+  overflow: auto;
 }
 
 .title {
   cursor: pointer;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+.fab-button {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 5px;
 }
