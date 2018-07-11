@@ -1,7 +1,7 @@
 <mat-menu #appMenu="matMenu">
   <ng-template matMenuContent let-id="id">
     <button mat-menu-item (click)="rename(id)">Rename</button>
-    <button mat-menu-item (click)="openDeleteDialog(id)">Delete</button>
+    <button mat-menu-item (click)="delete(id)">Delete</button>
   </ng-template>
 </mat-menu>
 <mat-list class="flexbox">

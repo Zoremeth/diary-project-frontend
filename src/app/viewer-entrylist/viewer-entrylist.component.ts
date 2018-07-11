@@ -13,7 +13,7 @@ import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete
 export class ViewerEntrylistComponent implements OnInit {
 
   entries!: Entry[];
-  dialogResult = '';
+  dialogResult!: boolean;
 
   constructor(public dataPuller: DatapullerService, public sidebar: SidebarService, public dialog: MatDialog) { }
 
@@ -32,20 +32,16 @@ export class ViewerEntrylistComponent implements OnInit {
 
   delete(id: number) {
     console.log('Deleting: ' + id);
-    // OPEN CONFIRMATION DIALOG
+    this.openDeleteDialog(id);
+    alert(this.dialogResult);
   }
 
-  openDeleteDialog(id: number): void {
+  openDeleteDialog(id: number): boolean {
     const dialogRef = this.dialog.open(ViewerEntrylistDeleteDialogComponent);
-
-    dialogRef.afterClosed().subscribe(result => this.dialogResult = result);
-
-    // Does not wait for the dialogResult to be updated.
-    if (this.dialogResult === 'confirmed') {
-      this.dataPuller.deleteEntry(id);
-    } else {
-      alert('Something went wrong');
-    }
+    dialogRef.afterClosed().subscribe(result => {
+      this.dialogResult = result;
+    });
+    return this.dialogResult;
   }
 
   alertEditor(id: number) {
