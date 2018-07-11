@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { DatapullerService } from '../data-puller.service';
-import { Entry } from '../entry';
+import { DatapullerService, Entry } from '../data-puller.service';
 import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
@@ -12,8 +11,7 @@ import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete
 })
 export class ViewerEntrylistComponent implements OnInit {
 
-  entries!: Entry[];
-  dialogResult!: boolean;
+  entries: Entry[] = [];
 
   constructor(public dataPuller: DatapullerService, public sidebar: SidebarService, public dialog: MatDialog) { }
 
@@ -32,16 +30,12 @@ export class ViewerEntrylistComponent implements OnInit {
 
   delete(id: number) {
     console.log('Deleting: ' + id);
-    this.openDeleteDialog(id);
-    alert(this.dialogResult);
-  }
-
-  openDeleteDialog(id: number): boolean {
     const dialogRef = this.dialog.open(ViewerEntrylistDeleteDialogComponent);
-    dialogRef.afterClosed().subscribe(result => {
-      this.dialogResult = result;
+    dialogRef.afterClosed().subscribe(deleteConfirmed => {
+      if (deleteConfirmed) {
+        this.dataPuller.deleteEntry(id);
+      }
     });
-    return this.dialogResult;
   }
 
   alertEditor(id: number) {

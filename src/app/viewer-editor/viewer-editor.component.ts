@@ -12,6 +12,10 @@ export class ViewerEditorComponent implements OnInit {
 
   constructor(public dataPuller: DatapullerService) { }
 
+  getTitle(): string {
+    return this.dataPuller.getTitle(this.dataPuller.getCurrentEntry());
+  }
+
   getDate(): string {
     return this.dataPuller.getDate(this.dataPuller.getCurrentEntry());
   }
