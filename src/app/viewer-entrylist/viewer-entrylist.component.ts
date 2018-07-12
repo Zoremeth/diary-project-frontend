@@ -4,6 +4,7 @@ import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
 import { ViewerEntrylistRenameDialogComponent } from '../viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
+import { ViewerEditorComponent } from '../viewer-editor/viewer-editor.component';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -14,6 +15,7 @@ export class ViewerEntrylistComponent implements OnInit {
 
   entries: Entry[] = [];
 
+  // tslint:disable-next-line:max-line-length
   constructor(public entryService: EntryService, public sidebar: SidebarService, public dialog: MatDialog) { }
 
   ngOnInit() {

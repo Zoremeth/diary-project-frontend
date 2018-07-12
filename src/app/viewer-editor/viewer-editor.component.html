@@ -7,4 +7,19 @@
     {{getContent()}}
   </mat-card-content>
 </mat-card> -->
-<quill-editor *ngIf="this.entryService.getCurrentEntry() !== -1" [(ngModel)]="data"></quill-editor>
+<!-- <button mat-button (click)="writeValue('test')">Test</button> -->
+<quill-editor [modules]="{ counter: { container: '#counter', unit: 'word' } }" #editor class="quill">
+  <div quill-editor-toolbar>
+    <span class="ql-formats">
+      <select class="ql-font"></select>
+      <select class="ql-size"></select>
+      <button class="ql-bold"></button>
+      <button class="ql-italic"></button>
+      <button class="ql-underline"></button>
+      <button class="ql-strike"></button>
+    </span>
+    <span class="ql-formats">
+      <div id="counter"></div>
+    </span>
+  </div>
+</quill-editor>

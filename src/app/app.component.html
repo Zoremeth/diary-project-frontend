@@ -1,2 +1,4 @@
-<!-- <app-login></app-login> -->
-<app-viewer></app-viewer>
+<app-viewer *ngIf="isLoggedIn(); else elseBlock"></app-viewer>
+<ng-template #elseBlock>
+    <app-login></app-login>
+</ng-template>

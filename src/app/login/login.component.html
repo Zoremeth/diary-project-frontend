@@ -1,3 +1,24 @@
-<p>
-  login works!
-</p>
+<div class="flexbox">
+  <mat-card class="mat-z6-elevation">
+    <mat-card-title>Login</mat-card-title>
+    <mat-divider></mat-divider>
+    <div class="container">
+      <mat-form-field>
+        <input matInput placeholder="Username" [(value)]="username">
+        <button mat-button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Password" type="password" [(value)]="password">
+        <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
+          <mat-icon>close</mat-icon>
+        </button>
+      </mat-form-field>
+    </div>
+    <mat-card-actions class="flex-item">
+      <button mat-raised-button class="actionButtons" tabindex="-1">New user</button>
+      <button mat-raised-button class="actionButtons" (click)="login()">Login</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

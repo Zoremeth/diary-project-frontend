@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EntryService } from './entryservice.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+
+  constructor(public entryService: EntryService) { }
+
+  isLoggedIn(): boolean {
+    return this.entryService.getLoginState();
+  }
 }

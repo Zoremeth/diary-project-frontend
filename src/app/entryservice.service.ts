@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
+import { timingSafeEqual } from 'crypto';
 
 export interface Entry {
   id: number;
@@ -16,7 +17,9 @@ export class EntryService {
 
   constructor() { }
 
+
   private currentEntry = -1;
+  private loginState = false;
 
   entries: Entry[] = [
     {
@@ -96,4 +99,11 @@ export class EntryService {
     });
   }
 
+  getLoginState(): boolean {
+    return this.loginState;
+  }
+
+  setLoginState(state: boolean): void {
+    this.loginState = state;
+  }
 }

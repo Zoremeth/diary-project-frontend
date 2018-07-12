@@ -1,6 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { EntryService } from '../entryservice.service';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
+import Quill from 'quill';
+
+
+import Counter from './counter';
+Quill.register('modules/counter', Counter);
 
 @Component({
   selector: 'app-viewer-editor',
@@ -10,7 +15,8 @@ import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ViewerEditorComponent implements OnInit {
 
   constructor(public entryService: EntryService) { }
-  data = 'Start typing here.';
+
+  @ViewChild('editor') editorQuill!: QuillEditorComponent;
 
   getTitle(): string {
     return this.entryService.getTitle(this.entryService.getCurrentEntry());
@@ -24,13 +30,11 @@ export class ViewerEditorComponent implements OnInit {
     return this.entryService.getContent(this.entryService.getCurrentEntry());
   }
 
-  setData(): void {
-    let id;
-    id = this.entryService.getCurrentEntry();
-    this.data = this.entryService.getContent(id);
+  writeValue(): void {
+    console.log(this.editorQuill.formats);
   }
 
   ngOnInit() {
+    this.editorQuill.onContentChanged.subscribe((data: any) => { console.log(data); });
   }
-
 }
