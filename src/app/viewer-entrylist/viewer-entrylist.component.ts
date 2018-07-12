@@ -54,12 +54,12 @@ export class ViewerEntrylistComponent implements OnInit {
 
   add(): void {
     const dialogRef = this.dialog.open(ViewerEntrylistAddDialogComponent, {
-      data: { title: '' }
+      data: {}
     });
-    // dialogRef.afterClosed().subscribe(newTitle => {
-    //   entry.title = newTitle.title;
-    //   entry.id =
-    // });
+    dialogRef.afterClosed().subscribe(newTitle => {
+      const id = this.entryService.add(newTitle.title, newTitle.date, 'Start typing here!');
+      this.alertEditor(id);
+    });
   }
 
   alertEditor(id: number) {

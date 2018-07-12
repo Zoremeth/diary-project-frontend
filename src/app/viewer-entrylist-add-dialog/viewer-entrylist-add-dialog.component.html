@@ -1,3 +1,17 @@
-<p>
-  viewer-entrylist-add-dialog works!
-</p>
+<h2 mat-dialog-title>New entry
+  <mat-divider></mat-divider>
+</h2>
+<mat-dialog-content>
+  <p>Title:</p>
+  <mat-form-field>
+    <input matInput [(ngModel)]="data.title">
+  </mat-form-field>
+  <p>Date:</p>
+  <mat-form-field>
+    <input matInput type="date" [(ngModel)]="data.date">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="undefined">Cancel</button>
+  <button mat-button [mat-dialog-close]="{title: data.title, date: data.date}" cdkFocusInitial>Confirm</button>
+</mat-dialog-actions>

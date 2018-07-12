@@ -10,7 +10,7 @@ import { LoginService } from './login.service';
 export class AppComponent {
   title = 'app';
 
-  loginState = false;
+  private loginState = false;
 
   constructor(public loginService: LoginService) { }
 

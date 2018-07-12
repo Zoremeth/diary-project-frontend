@@ -53,10 +53,11 @@ export class EntryService {
     })
   );
 
-  add(title: string, date: string, content: string) {
+  add(title: string, date: string, content: string): number {
     const id = Object.keys(this.entries).length;
     this.entries[id] = { id, date, title, content };
     this.entriesStream.next(this.entries);
+    return id;
     console.log(this.entries);
   }
 

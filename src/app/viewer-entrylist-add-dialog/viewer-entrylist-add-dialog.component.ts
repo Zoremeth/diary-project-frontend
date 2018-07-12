@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { EntryService } from '../entryservice.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '../../../node_modules/@angular/material';
+import { getLocaleDayNames } from '../../../node_modules/@angular/common';
 
 @Component({
   selector: 'app-viewer-entrylist-add-dialog',
@@ -6,8 +9,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./viewer-entrylist-add-dialog.component.css']
 })
 export class ViewerEntrylistAddDialogComponent implements OnInit {
-
-  constructor() { }
+  title = 'henlo';
+  date = '';
+  constructor(public entryService: EntryService, @Inject(MAT_DIALOG_DATA) public data: string) { }
 
   ngOnInit() {
   }
