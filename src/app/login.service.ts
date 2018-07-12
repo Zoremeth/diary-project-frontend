@@ -40,7 +40,7 @@ export class LoginService {
 
   login(username: string, password: string): boolean {
     this.entries.forEach(user => {
-      if (user.username === username && user.password === user.password) {
+      if (user.username === username && user.password === password) {
         this.loggedIn = true;
       } else {
       }
