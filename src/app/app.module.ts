@@ -21,6 +21,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { ViewerEntrylistRenameDialogComponent } from './viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
 import { QuillModule } from 'ngx-quill';
+import { ViewerEntrylistAddDialogComponent } from './viewer-entrylist-add-dialog/viewer-entrylist-add-dialog.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { QuillModule } from 'ngx-quill';
     ViewerEditorComponent,
     ViewerEntrylistDeleteDialogComponent,
     ViewerEntrylistRenameDialogComponent,
+    ViewerEntrylistAddDialogComponent,
   ],
   imports: [
     FormsModule,
@@ -53,6 +55,7 @@ import { QuillModule } from 'ngx-quill';
   entryComponents: [
     ViewerEntrylistDeleteDialogComponent,
     ViewerEntrylistRenameDialogComponent,
+    ViewerEntrylistAddDialogComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

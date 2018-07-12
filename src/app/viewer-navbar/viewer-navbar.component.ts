@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../sidebar.service';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-viewer-navbar',
@@ -11,7 +12,7 @@ export class ViewerNavbarComponent implements OnInit {
 
   private icon!: string;
 
-  constructor(public sidebar: SidebarService) { }
+  constructor(public sidebar: SidebarService, public loginService: LoginService) { }
 
   ngOnInit() {
   }
@@ -21,7 +22,7 @@ export class ViewerNavbarComponent implements OnInit {
     return this.icon;
   }
 
-  alert(test: string) {
-    alert(test);
+  logout(): void {
+    this.loginService.logout();
   }
 }

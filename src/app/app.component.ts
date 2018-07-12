@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { EntryService } from './entryservice.service';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +10,12 @@ import { EntryService } from './entryservice.service';
 export class AppComponent {
   title = 'app';
 
-  constructor(public entryService: EntryService) { }
+  loginState = false;
+
+  constructor(public loginService: LoginService) { }
 
   isLoggedIn(): boolean {
-    return this.entryService.getLoginState();
+    this.loginService.isLoggedIn().subscribe(state => this.loginState = state);
+    return this.loginState;
   }
 }

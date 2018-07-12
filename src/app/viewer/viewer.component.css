@@ -12,4 +12,9 @@ mat-drawer {
 
 .drawer{
   box-shadow: 1px 1px 6px 2px #ccc;
+  height: auto;
+}
+
+.drawer-child {
+  height: 100%;
 }

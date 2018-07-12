@@ -1,11 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EntryService } from '../entryservice.service';
-import { QuillEditorComponent } from 'ngx-quill/src/quill-editor.component';
-import Quill from 'quill';
-
-
-import Counter from './counter';
-Quill.register('modules/counter', Counter);
+import { EntryService, Entry } from '../entryservice.service';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-viewer-editor',
@@ -14,27 +9,13 @@ Quill.register('modules/counter', Counter);
 })
 export class ViewerEditorComponent implements OnInit {
 
-  constructor(public entryService: EntryService) { }
+  currentEntry$: Observable<Entry | undefined>;
 
-  @ViewChild('editor') editorQuill!: QuillEditorComponent;
-
-  getTitle(): string {
-    return this.entryService.getTitle(this.entryService.getCurrentEntry());
+  constructor(public entryService: EntryService) {
+    this.currentEntry$ = entryService.currentEntry$;
   }
 
-  getDate(): string {
-    return this.entryService.getDate(this.entryService.getCurrentEntry());
-  }
+  ngOnInit(): void {
 
-  getContent(): string {
-    return this.entryService.getContent(this.entryService.getCurrentEntry());
-  }
-
-  writeValue(): void {
-    console.log(this.editorQuill.formats);
-  }
-
-  ngOnInit() {
-    this.editorQuill.onContentChanged.subscribe((data: any) => { console.log(data); });
   }
 }

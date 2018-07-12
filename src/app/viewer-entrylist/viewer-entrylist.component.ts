@@ -4,7 +4,8 @@ import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
 import { ViewerEntrylistRenameDialogComponent } from '../viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
-import { ViewerEditorComponent } from '../viewer-editor/viewer-editor.component';
+import { Observable } from '../../../node_modules/rxjs';
+import { ViewerEntrylistAddDialogComponent } from '../viewer-entrylist-add-dialog/viewer-entrylist-add-dialog.component';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -13,40 +14,55 @@ import { ViewerEditorComponent } from '../viewer-editor/viewer-editor.component'
 })
 export class ViewerEntrylistComponent implements OnInit {
 
-  entries: Entry[] = [];
+  entries$: Observable<Entry[]>;
 
-  // tslint:disable-next-line:max-line-length
-  constructor(public entryService: EntryService, public sidebar: SidebarService, public dialog: MatDialog) { }
+  constructor(
+    public entryService: EntryService,
+    public sidebar: SidebarService,
+    public dialog: MatDialog
+  ) {
+    this.entries$ = entryService.entries$;
+  }
 
   ngOnInit() {
   }
 
-  getEntries(): Entry[] {
-    this.entryService.getEntries().subscribe(entries => this.entries = entries);
-    return this.entries;
-  }
-
-  delete(id: number) {
-    console.log('Deleting: ' + id);
+  delete(entry: Entry) {
+    console.log('Deleting: ' + entry.id);
     const dialogRef = this.dialog.open(ViewerEntrylistDeleteDialogComponent);
     dialogRef.afterClosed().subscribe(deleteConfirmed => {
       if (deleteConfirmed) {
-        this.entryService.deleteEntry(id);
+        this.entryService.delete(entry.id);
       }
     });
   }
 
-  rename(id: number): void {
-    const titleFromId = this.entryService.getTitle(id);
+  rename(entry: Entry): void {
+    const titleFromId = entry.title;
     const dialogRef = this.dialog.open(ViewerEntrylistRenameDialogComponent, {
       data: { title: titleFromId }
     });
-    dialogRef.afterClosed().subscribe(newString => {
-      this.entryService.setTitle(id, newString);
+    dialogRef.afterClosed().subscribe(newTitle => {
+      if (newTitle === '') {
+        newTitle = undefined;
+      }
+      if (newTitle !== undefined) {
+        entry.title = newTitle;
+      }
     });
   }
 
+  add(): void {
+    const dialogRef = this.dialog.open(ViewerEntrylistAddDialogComponent, {
+      data: { title: '' }
+    });
+    // dialogRef.afterClosed().subscribe(newTitle => {
+    //   entry.title = newTitle.title;
+    //   entry.id =
+    // });
+  }
+
   alertEditor(id: number) {
-    this.entryService.setCurrentEntry(id);
+    this.entryService.setCurrent(id);
   }
 }

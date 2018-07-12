@@ -4,13 +4,13 @@
     <mat-divider></mat-divider>
     <div class="container">
       <mat-form-field>
-        <input matInput placeholder="Username" [(value)]="username">
+        <input matInput type="text" placeholder="Username" [(ngModel)]="username">
         <button mat-button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Password" type="password" [(value)]="password">
+        <input matInput placeholder="Password" type="password" [(ngModel)]="password">
         <button mat-button *ngIf="password" matSuffix mat-icon-button aria-label="Clear" (click)="password=''">
           <mat-icon>close</mat-icon>
         </button>

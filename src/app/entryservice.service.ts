@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
+import { map, withLatestFrom } from 'rxjs/operators';
 
 export interface Entry {
   id: number;
@@ -7,6 +8,7 @@ export interface Entry {
   date: string;
   // order: number
   content: string; // Figure out how to implement markup later.
+  deleted?: boolean;
 }
 
 @Injectable({
@@ -14,95 +16,66 @@ export interface Entry {
 })
 export class EntryService {
 
-  constructor() { }
-
-
-  private currentEntry = -1;
-  private loginState = false;
-
-  entries: Entry[] = [
-    {
+  private entries: { [key: number]: Entry } = {
+    0: {
       id: 0,
       title: 'Test1',
       date: '9-7-2018',
-      content: 'Nani',
+      content: 'Nani'
     },
-    {
+    1: {
       id: 1,
       title: 'Test2',
       date: '10-7-2018',
-      content: 'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over. The quick brown fox jumps over the lazy dog.'
+      content:
+        'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over. The quick brown fox jumps over the lazy dog.'
     },
-    {
+    2: {
       id: 2,
       title: 'Test3',
       date: '11-7-2018',
       content: 'Hello World!'
     }
+  };
 
-  ];
+  private currentEntryStream = new BehaviorSubject<number>(-1);
+  private entriesStream = new BehaviorSubject<{ [key: number]: Entry }>(
+    this.createEntryList(this.entries)
+  );
 
-  getEntries(): Observable<Entry[]> {
-    // To-DO: Use observable
-    return of(this.entries);
-  }
+  entries$ = this.entriesStream.asObservable().pipe(map(entries => this.createEntryList(entries)));
 
-  addEntry(title: string, date: string, content: string) {
-    const entry: Entry = {
-      id: this.entries.length + 1,
-      date: date,
-      title: title,
-      content: content,
-    };
-    this.entries.push(entry);
+  currentEntry$ = this.currentEntryStream.asObservable().pipe(
+    withLatestFrom(this.entriesStream),
+    map(([index, entries]) => {
+      const selected = entries[index];
+      return !selected || selected.deleted ? undefined : selected;
+    })
+  );
+
+  add(title: string, date: string, content: string) {
+    const id = Object.keys(this.entries).length;
+    this.entries[id] = { id, date, title, content };
+    this.entriesStream.next(this.entries);
     console.log(this.entries);
   }
 
-  deleteEntry(id: number): void {
-    console.log(id);
-    this.entries.splice(id, 1);
-    this.reorderArray();
-    console.log('Deleted.');
+  delete(id: number): void {
+    this.entries[id].deleted = true;
+    this.entriesStream.next(this.entries);
+    console.log(`${id} deleted`);
   }
 
-  getTitle(id: number): string {
-    return this.entries[id].title;
+  setCurrent(id: number) {
+    this.currentEntryStream.next(id);
+    console.log(`${id} selected`);
   }
 
-  setTitle(id: number, newString: string): void {
-    this.entries[id].title = newString;
+  private createEntryList(entries: { [key: number]: Entry }) {
+    return Object.values(this.entries)
+      .filter(entry => !entry.deleted)
+      .sort((a, b) => a.id - b.id);
   }
 
-  getDate(id: number): string {
-    return this.entries[id].date;
-  }
 
-  getContent(id: number): string {
-    return this.entries[id].content;
-  }
-
-  getCurrentEntry(): number {
-    return this.currentEntry;
-  }
-
-  setCurrentEntry(id: number) {
-    this.currentEntry = id;
-  }
-
-  reorderArray(): void {
-    // Not efficient when handling big arrays.
-    let counter = 0;
-    this.entries.forEach(element => {
-      element.id = counter;
-      counter++;
-    });
-  }
-
-  getLoginState(): boolean {
-    return this.loginState;
-  }
-
-  setLoginState(state: boolean): void {
-    this.loginState = state;
-  }
 }

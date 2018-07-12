@@ -1,7 +1,7 @@
 <mat-menu #appMenu="matMenu">
-  <ng-template matMenuContent let-id="id">
-    <button mat-menu-item (click)="rename(id)">Rename</button>
-    <button mat-menu-item (click)="delete(id)">Delete</button>
+  <ng-template matMenuContent let-entry="entry">
+    <button mat-menu-item (click)="rename(entry)">Rename</button>
+    <button mat-menu-item (click)="delete(entry)">Delete</button>
   </ng-template>
 </mat-menu>
 <mat-list class="flexbox">
@@ -10,16 +10,16 @@
     <mat-divider></mat-divider>
   </mat-list-item>
   <div class="entries-list">
-    <mat-list-item *ngFor='let entry of getEntries()' class="flex-item">
+    <mat-list-item *ngFor='let entry of (entries$ | async)' class="flex-item">
       <h3 mat-line (click)='alertEditor(entry.id); this.sidebar.closeSidebar()' class="title">{{entry.title}} | {{entry.date}}</h3>
-      <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{id: entry.id}">
+      <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{entry: entry}">
         <mat-icon>more_vert</mat-icon>
       </button>
       <mat-divider></mat-divider>
     </mat-list-item>
   </div>
   <div class="fab-button">
-    <button mat-fab (click)="this.entryService.addEntry('test', 'test', 'test')">
+    <button mat-fab (click)="add()">
       <mat-icon>add</mat-icon>
     </button>
   </div>

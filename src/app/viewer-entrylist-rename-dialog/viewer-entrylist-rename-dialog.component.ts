@@ -9,6 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class ViewerEntrylistRenameDialogComponent implements OnInit {
 
   newString!: string;
+  undefined = undefined;
 
   // tslint:disable-next-line:max-line-length
   constructor(public thisDialogRef: MatDialogRef<ViewerEntrylistRenameDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: string) { }
