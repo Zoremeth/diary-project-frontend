@@ -6,6 +6,7 @@ import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete
 import { ViewerEntrylistRenameDialogComponent } from '../viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
 import { Observable } from '../../../node_modules/rxjs';
 import { ViewerEntrylistAddDialogComponent } from '../viewer-entrylist-add-dialog/viewer-entrylist-add-dialog.component';
+import { ViewerEntrylistProtectDialogComponent } from '../viewer-entrylist-protect-dialog/viewer-entrylist-protect-dialog.component';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -15,7 +16,8 @@ import { ViewerEntrylistAddDialogComponent } from '../viewer-entrylist-add-dialo
 export class ViewerEntrylistComponent implements OnInit {
 
   entries$: Observable<Entry[]>;
-
+  button = 'lock';
+  buttonClick = 'alert("Hi")';
   constructor(
     public entryService: EntryService,
     public sidebar: SidebarService,
@@ -59,6 +61,36 @@ export class ViewerEntrylistComponent implements OnInit {
     dialogRef.afterClosed().subscribe(newTitle => {
       const id = this.entryService.add(newTitle.title, newTitle.date, 'Start typing here!');
       this.alertEditor(id);
+    });
+  }
+
+  unlock(entry: Entry) {
+    const dialogRef = this.dialog.open(ViewerEntrylistProtectDialogComponent, {
+      data: { title: 'Unlock', placeholder: 'Enter password to unlock entry' }
+    });
+    dialogRef.afterClosed().subscribe(givenPassword => {
+      if (givenPassword === '') {
+        givenPassword = undefined;
+      }
+      if (givenPassword === entry.protected) {
+        entry.protected = undefined;
+        this.button = 'more_vert';
+      }
+    });
+  }
+
+  lock(entry: Entry) {
+    const dialogRef = this.dialog.open(ViewerEntrylistProtectDialogComponent, {
+      data: { title: 'Lock', placeholder: 'Enter password to lock entry' }
+    });
+    dialogRef.afterClosed().subscribe(givenPassword => {
+      if (givenPassword === '') {
+        givenPassword = undefined;
+      }
+      if (givenPassword !== undefined) {
+        entry.protected = givenPassword;
+        this.button = 'lock';
+      }
     });
   }
 

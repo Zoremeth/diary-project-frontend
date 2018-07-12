@@ -2,19 +2,29 @@
   <ng-template matMenuContent let-entry="entry">
     <button mat-menu-item (click)="rename(entry)">Rename</button>
     <button mat-menu-item (click)="delete(entry)">Delete</button>
+    <button mat-menu-item (click)="lock(entry)">Lock</button>
   </ng-template>
 </mat-menu>
 <mat-list class="flexbox">
   <mat-list-item>
-    <h3>Entries:</h3>
+    <h3 mat-line>Entries:</h3>
     <mat-divider></mat-divider>
   </mat-list-item>
   <div class="entries-list">
     <mat-list-item *ngFor='let entry of (entries$ | async)' class="flex-item">
-      <h3 mat-line (click)='alertEditor(entry.id); this.sidebar.closeSidebar()' class="title">{{entry.title}} | {{entry.date}}</h3>
-      <button mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{entry: entry}">
+      <h3 mat-line *ngIf="entry.protected === undefined; else elseBlockHeader" (click)='alertEditor(entry.id); this.sidebar.closeSidebar()'
+        class="title">{{entry.title}} | {{entry.date}}</h3>
+      <button *ngIf="entry.protected === undefined; else elseBlockButton" mat-icon-button [matMenuTriggerFor]="appMenu" [matMenuTriggerData]="{entry: entry}">
         <mat-icon>more_vert</mat-icon>
       </button>
+      <ng-template #elseBlockHeader>
+        <h3 mat-line class="title" (click)="unlock(entry)">{{entry.title}} | {{entry.date}}</h3>
+      </ng-template>
+      <ng-template #elseBlockButton>
+        <button mat-icon-button>
+          <mat-icon [innerHTML]="button"></mat-icon>
+        </button>
+      </ng-template>
       <mat-divider></mat-divider>
     </mat-list-item>
   </div>

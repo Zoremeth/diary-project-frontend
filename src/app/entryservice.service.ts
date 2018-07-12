@@ -9,6 +9,7 @@ export interface Entry {
   // order: number
   content: string; // Figure out how to implement markup later.
   deleted?: boolean;
+  protected?: string;
 }
 
 @Injectable({
@@ -21,20 +22,23 @@ export class EntryService {
       id: 0,
       title: 'Test1',
       date: '9-7-2018',
-      content: 'Nani'
+      content: 'Nani',
+      protected: 'hello',
     },
     1: {
       id: 1,
       title: 'Test2',
       date: '10-7-2018',
       content:
-        'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over. The quick brown fox jumps over the lazy dog.'
+        'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over. The quick brown fox jumps over the lazy dog.',
+      protected: undefined
     },
     2: {
       id: 2,
       title: 'Test3',
       date: '11-7-2018',
-      content: 'Hello World!'
+      content: 'Hello World!',
+      protected: undefined
     }
   };
 
@@ -58,7 +62,6 @@ export class EntryService {
     this.entries[id] = { id, date, title, content };
     this.entriesStream.next(this.entries);
     return id;
-    console.log(this.entries);
   }
 
   delete(id: number): void {
