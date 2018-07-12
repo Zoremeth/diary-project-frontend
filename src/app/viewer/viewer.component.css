@@ -13,6 +13,7 @@ mat-drawer {
 
 .drawer{
   box-shadow: 1px 1px 6px 2px #ccc;
+  height: calc(100% - 64px);
 }
 
 .drawer-child {
