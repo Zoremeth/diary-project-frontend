@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { timingSafeEqual } from 'crypto';
 
 export interface Entry {
   id: number;
