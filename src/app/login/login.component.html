@@ -1,22 +1,21 @@
-<div class="flexbox">
-  <mat-card class="mat-z6-elevation">
+<div [class]="animation">
+  <mat-card class="mat-z6-elevation" style="width: 300px;">
     <mat-card-title>Login</mat-card-title>
     <mat-divider></mat-divider>
     <div class="container">
       <mat-form-field>
-        <input matInput type="text" placeholder="Username" [(ngModel)]="username">
+        <input matInput type="text" placeholder="Username" [(ngModel)]="username" (keyup)="this.animation = ''">
         <button mat-button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
       <mat-form-field>
-        <input matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" [(ngModel)]="password">
-        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}</mat-icon>
+        <input matInput placeholder="Enter your password" type="password" [(ngModel)]="password" (keyup)="this.animation = ''">
       </mat-form-field>
     </div>
     <mat-card-actions class="flex-item">
       <button mat-raised-button class="actionButtons" tabindex="-1">New user</button>
-      <button mat-raised-button class="actionButtons" (click)="login()">Login</button>
+      <button mat-raised-button class="actionButtons" (click)="login(username, password)">Login</button>
     </mat-card-actions>
   </mat-card>
 </div>

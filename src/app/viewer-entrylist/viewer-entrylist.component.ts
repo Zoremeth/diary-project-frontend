@@ -97,4 +97,12 @@ export class ViewerEntrylistComponent implements OnInit {
   alertEditor(id: number) {
     this.entryService.setCurrent(id);
   }
+
+  export(entry: Entry): void {
+    const blob = new Blob([entry.content], { type: 'text/html' });
+    const tempElem = document.createElement('a');
+    tempElem.download = entry.title + '.html';
+    tempElem.href = window.URL.createObjectURL(blob);
+    tempElem.click();
+  }
 }

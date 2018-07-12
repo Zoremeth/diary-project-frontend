@@ -4,11 +4,11 @@
 <mat-dialog-content>
   <p>Title:</p>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.title">
+    <input matInput [(ngModel)]="data.title" (blur)="checkChange($event)">
   </mat-form-field>
   <p>Date:</p>
   <mat-form-field>
-    <input matInput type="date" [(ngModel)]="data.date">
+    <input matInput type="date" [(ngModel)]="data.date" (blur)="checkChange()">
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
