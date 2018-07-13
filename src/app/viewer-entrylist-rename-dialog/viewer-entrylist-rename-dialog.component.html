@@ -4,10 +4,10 @@
 <mat-dialog-content>
   <p>What would you like to rename it to?</p>
   <mat-form-field class="formfield">
-    <input matInput [placeholder]="data.placeholder" [(ngModel)]="data.title">
+    <input matInput [placeholder]="data.placeholder" [(ngModel)]="data.title" cdkFocusInitial>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions class="flex-item">
-  <button mat-button [mat-dialog-close]="undefined" class="actionButtons">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.title" cdkFocusInitial disabled="{{checkDisabled(data.title)}}" class="actionButtons">Confirm</button>
+  <button mat-button [mat-dialog-close]="undefined" tabindex="-1" class="actionButtons">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.title" disabled="{{checkDisabled(data.title)}}" class="actionButtons">Confirm</button>
 </mat-dialog-actions>

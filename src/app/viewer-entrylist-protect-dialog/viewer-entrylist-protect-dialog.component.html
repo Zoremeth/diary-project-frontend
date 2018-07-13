@@ -3,10 +3,10 @@
 </h2>
 <mat-dialog-content>
   <mat-form-field>
-    <input matInput type="password" [placeholder]="data.placeholder" [(ngModel)]="data.password" required>
+    <input matInput type="password" [placeholder]="data.placeholder" [(ngModel)]="data.password" required cdkFocusInitial>
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
-  <button mat-button [mat-dialog-close]="undefined">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.password" cdkFocusInitial disabled="{{checkDisabled(data.password)}}">Confirm</button>
+  <button mat-button [mat-dialog-close]="undefined" tabindex="-1">Cancel</button>
+  <button mat-button [mat-dialog-close]="data.password" disabled="{{checkDisabled(data.password)}}">Confirm</button>
 </mat-dialog-actions>

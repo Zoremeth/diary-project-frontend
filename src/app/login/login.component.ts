@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       data: {}
     });
     dialogRef.afterClosed().subscribe(data => {
-      console.log(data);
+      this.loginService.addUser(data.username, data.password);
     });
   }
 }

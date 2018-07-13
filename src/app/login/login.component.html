@@ -4,7 +4,7 @@
     <mat-divider></mat-divider>
     <div class="container">
       <mat-form-field>
-        <input matInput type="text" placeholder="Username" [(ngModel)]="username" (keyup)="this.animation = ''">
+        <input matInput type="text" cdkFocusInitial placeholder="Username" [(ngModel)]="username" (keyup)="this.animation = ''">
         <button mat-button tabindex="-1" *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
           <mat-icon>close</mat-icon>
         </button>
