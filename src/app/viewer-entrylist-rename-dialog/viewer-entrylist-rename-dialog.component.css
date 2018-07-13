@@ -1,0 +1,13 @@
+.actionButtons {
+    width: 100%;
+}
+
+.flex-item {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+
+.formfield {
+    width: 100%;
+}

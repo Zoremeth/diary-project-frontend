@@ -15,4 +15,12 @@ export class ViewerEntrylistProtectDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkDisabled(password: string): boolean {
+    let disabled = true;
+    if (password !== '' && password !== undefined) {
+      disabled = false;
+    }
+    return disabled;
+  }
+
 }

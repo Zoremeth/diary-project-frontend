@@ -23,6 +23,7 @@ import { ViewerEntrylistRenameDialogComponent } from './viewer-entrylist-rename-
 import { QuillModule } from 'ngx-quill';
 import { ViewerEntrylistAddDialogComponent } from './viewer-entrylist-add-dialog/viewer-entrylist-add-dialog.component';
 import { ViewerEntrylistProtectDialogComponent } from './viewer-entrylist-protect-dialog/viewer-entrylist-protect-dialog.component';
+import { LoginNewuserComponent } from './login-newuser/login-newuser.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ViewerEntrylistProtectDialogComponent } from './viewer-entrylist-protec
     ViewerEntrylistRenameDialogComponent,
     ViewerEntrylistAddDialogComponent,
     ViewerEntrylistProtectDialogComponent,
+    LoginNewuserComponent,
   ],
   imports: [
     FormsModule,
@@ -59,6 +61,7 @@ import { ViewerEntrylistProtectDialogComponent } from './viewer-entrylist-protec
     ViewerEntrylistRenameDialogComponent,
     ViewerEntrylistAddDialogComponent,
     ViewerEntrylistProtectDialogComponent,
+    LoginNewuserComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]

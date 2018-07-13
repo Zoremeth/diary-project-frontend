@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>New user
+  <mat-divider></mat-divider>
+</h2>
+<mat-dialog-content class="form">
+  <mat-form-field>
+    <input matInput placeholder="Enter a username" [(ngModel)]="data.username" required>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Enter a password" type="password" [(ngModel)]="data.password" required>
+
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="undefined" tabindex="-1">Cancel</button>
+  <button mat-button [mat-dialog-close]="{title: data.username, date: data.password}" cdkFocusInitial disabled="{{checkDisabled(data.username, data.password)}}">Confirm</button>
+</mat-dialog-actions>

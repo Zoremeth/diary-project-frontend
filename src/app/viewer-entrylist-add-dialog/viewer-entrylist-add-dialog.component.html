@@ -4,14 +4,14 @@
 <mat-dialog-content>
   <p>Title:</p>
   <mat-form-field>
-    <input matInput [(ngModel)]="data.title" (blur)="checkChange($event)">
+    <input matInput [(ngModel)]="data.title">
   </mat-form-field>
   <p>Date:</p>
   <mat-form-field>
-    <input matInput type="date" [(ngModel)]="data.date" (blur)="checkChange()">
+    <input matInput type="date" [(ngModel)]="data.date">
   </mat-form-field>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button [mat-dialog-close]="undefined">Cancel</button>
-  <button mat-button [mat-dialog-close]="{title: data.title, date: data.date}" cdkFocusInitial>Confirm</button>
+  <button mat-button [mat-dialog-close]="{title: data.title, date: data.date}" cdkFocusInitial disabled="{{checkDisabled(data.title, data.date)}}">Confirm</button>
 </mat-dialog-actions>

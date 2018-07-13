@@ -5,7 +5,7 @@
     <div class="container">
       <mat-form-field>
         <input matInput type="text" placeholder="Username" [(ngModel)]="username" (keyup)="this.animation = ''">
-        <button mat-button *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
+        <button mat-button tabindex="-1" *ngIf="username" matSuffix mat-icon-button aria-label="Clear" (click)="username=''">
           <mat-icon>close</mat-icon>
         </button>
       </mat-form-field>
@@ -14,7 +14,7 @@
       </mat-form-field>
     </div>
     <mat-card-actions class="flex-item">
-      <button mat-raised-button class="actionButtons" tabindex="-1">New user</button>
+      <button mat-raised-button class="actionButtons" tabindex="-1" (click)="newUser()">New user</button>
       <button mat-raised-button class="actionButtons" (click)="login(username, password)">Login</button>
     </mat-card-actions>
   </mat-card>

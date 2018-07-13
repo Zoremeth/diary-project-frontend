@@ -17,4 +17,11 @@ export class ViewerEntrylistRenameDialogComponent implements OnInit {
   ngOnInit() {
   }
 
+  checkDisabled(title: string): boolean {
+    let disabled = true;
+    if (title !== '' && title !== undefined) {
+      disabled = false;
+    }
+    return disabled;
+  }
 }

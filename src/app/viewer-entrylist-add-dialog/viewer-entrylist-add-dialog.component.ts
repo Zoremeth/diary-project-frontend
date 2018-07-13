@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Inject, EventEmitter } from '@angular/core';
 import { MAT_DIALOG_DATA } from '../../../node_modules/@angular/material';
 @Component({
   selector: 'app-viewer-entrylist-add-dialog',
@@ -15,11 +15,14 @@ export class ViewerEntrylistAddDialogComponent implements OnInit {
   ngOnInit() {
   }
 
-  checkChange(): void {
-    console.log(this.date.length);
-    if (this.date.length !== 0 && this.title !== '') {
-      this.disabled = false;
+  checkDisabled(title: string, date: string): boolean {
+    let disabled = true;
+    if (title !== '' && title !== undefined) {
+      if (date !== '' && date !== undefined) {
+        disabled = false;
+      }
     }
+    return disabled;
   }
 
 }
