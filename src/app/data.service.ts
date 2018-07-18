@@ -13,10 +13,7 @@ export class DataService {
     this.connection.start().catch((err: any) => console.log(err));
   }
 
-  login(username: string, password: string): Observable<boolean> {
-    let status = false;
+  login(username: string, password: string): void {
     this.connection.invoke('Login', username, password).catch(err => console.log(err));
-    this.connection.on('ValidationRequest', (ValidationStatus: boolean) => { console.log(ValidationStatus); status = ValidationStatus; });
-    return of(status);
   }
 }

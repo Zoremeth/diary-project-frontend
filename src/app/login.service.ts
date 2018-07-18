@@ -18,11 +18,13 @@ export class LoginService {
   constructor(public dataService: DataService) { }
 
   isLoggedIn(): Observable<boolean> {
+    this.dataService.connection
+      .on('ValidationRequest', (ValidationStatus: boolean) => { console.log(ValidationStatus); this.loggedIn = ValidationStatus; });
     return of(this.loggedIn);
   }
 
   login(username: string, password: string): void {
-    this.dataService.login(username, password).subscribe(result => this.loggedIn = result);
+    this.dataService.login(username, password);
   }
 
   logout(): void {
