@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
 import { MatDialog } from '../../../node_modules/@angular/material';
 import { LoginNewuserComponent } from '../login-newuser/login-newuser.component';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   password = '';
   animation = '';
 
-  constructor(public loginService: LoginService, public dialog: MatDialog) { }
+  constructor(public loginService: LoginService, public dialog: MatDialog, public dataService: DataService) { }
 
   ngOnInit() {
   }
@@ -23,6 +24,10 @@ export class LoginComponent implements OnInit {
     if (!this.loginService.login(username, password)) {
       this.animation = 'animated shake';
     }
+  }
+
+  test(username: string): void {
+    this.dataService.getEntries(username);
   }
 
   newUser(): void {

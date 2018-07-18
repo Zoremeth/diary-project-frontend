@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from '../../node_modules/rxjs';
-import * as signalR from '@aspnet/signalr';
 import { DataService } from './data.service';
 
 export interface User {
@@ -19,7 +18,9 @@ export class LoginService {
 
   isLoggedIn(): Observable<boolean> {
     this.dataService.connection
-      .on('ValidationRequest', (ValidationStatus: boolean) => { console.log(ValidationStatus); this.loggedIn = ValidationStatus; });
+      .on('ValidationDone', (validationStatus: boolean) => { this.loggedIn = validationStatus; });
+    this.dataService.connection
+      .on('EntriesRetrieved', (entries: any) => { console.log(entries); });
     return of(this.loggedIn);
   }
 
@@ -32,5 +33,6 @@ export class LoginService {
   }
 
   addUser(username: string, password: string): void {
+    this.dataService.add(username, password);
   }
 }

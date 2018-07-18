@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
-import { Observable, of } from '../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,5 +14,13 @@ export class DataService {
 
   login(username: string, password: string): void {
     this.connection.invoke('Login', username, password).catch(err => console.log(err));
+  }
+
+  add(username: string, password: string): void {
+    this.connection.invoke('Register', username, password).catch(err => console.log(err));
+  }
+
+  getEntries(username: string): void {
+    this.connection.invoke('GetEntries', username).catch(err => console.log(err));
   }
 }
