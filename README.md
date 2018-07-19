@@ -9,7 +9,9 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Development server back-end
 The front-end also requires a back-end server to be ran so that it can display data.
+
 (https://github.com/Zoremeth/diary-project-backend)
+
 Instructions:
 1. Clone repo
 2. Make sure to have .NET installed
