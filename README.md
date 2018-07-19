@@ -7,7 +7,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 
-## Development server back-end.
+## Development server back-end
 The front-end also requires a back-end server to be ran so that it can display data.
 (https://github.com/Zoremeth/diary-project-backend)
 Instructions:
