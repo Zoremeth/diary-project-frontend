@@ -1,12 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '../../../node_modules/@angular/material';
+import { MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
-  selector: 'app-login-newuser',
-  templateUrl: './login-newuser.component.html',
-  styleUrls: ['./login-newuser.component.css']
+  selector: 'app-login-register',
+  templateUrl: './login-register.component.html',
+  styleUrls: ['./login-register.component.css']
 })
-export class LoginNewuserComponent implements OnInit {
+export class LoginRegisterComponent implements OnInit {
 
   username = '';
   password = '';

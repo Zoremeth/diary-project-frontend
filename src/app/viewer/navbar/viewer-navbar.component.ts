@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SidebarService } from '../sidebar.service';
-import { LoginService } from '../login.service';
+import { SidebarService } from '../../shared/sidebar.service';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-viewer-navbar',

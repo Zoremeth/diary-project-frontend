@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from '../login.service';
-import { MatDialog } from '../../../node_modules/@angular/material';
-import { LoginNewuserComponent } from '../login-newuser/login-newuser.component';
-import { DataService } from '../data.service';
+import { LoginService } from './login.service';
+import { MatDialog } from '@angular/material';
+import { LoginRegisterComponent } from '../register/login-register.component';
+import { DataService } from '../shared/data.service';
 
 @Component({
   selector: 'app-login',
@@ -26,12 +26,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  test(username: string): void {
-    this.dataService.getEntries(username);
-  }
-
   newUser(): void {
-    const dialogRef = this.dialog.open(LoginNewuserComponent, {
+    const dialogRef = this.dialog.open(LoginRegisterComponent, {
       data: {}
     });
     dialogRef.afterClosed().subscribe(data => {

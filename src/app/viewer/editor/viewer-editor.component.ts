@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { EntryService, Entry } from '../entryservice.service';
-import { Observable } from '../../../node_modules/rxjs';
+import { EntryService, Entry } from '../shared/entryservice.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-viewer-editor',

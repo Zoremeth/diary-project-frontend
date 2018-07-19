@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
+import { DataService } from '../../shared/data.service';
 
 export interface Entry {
   id: number;
@@ -9,7 +10,7 @@ export interface Entry {
   // order: number
   content: string; // Figure out how to implement markup later.
   deleted?: boolean;
-  protected?: string;
+  locked?: string;
 }
 
 @Injectable({
@@ -17,35 +18,10 @@ export interface Entry {
 })
 export class EntryService {
 
-  private entries: { [key: number]: Entry } = {
-    0: {
-      id: 0,
-      title: 'Test1',
-      date: '9-7-2018',
-      content: 'Nani',
-      protected: 'hello',
-    },
-    1: {
-      id: 1,
-      title: 'Test2',
-      date: '10-7-2018',
-      content:
-        'The quick brown fox jumps over the lazy dog. The quick brown fox jumps over. The quick brown fox jumps over the lazy dog.',
-      protected: undefined
-    },
-    2: {
-      id: 2,
-      title: 'Test3',
-      date: '11-7-2018',
-      content: 'Hello World!',
-      protected: undefined
-    }
-  };
+  private entries: { [key: number]: Entry } = {};
 
   private currentEntryStream = new BehaviorSubject<number>(-1);
-  private entriesStream = new BehaviorSubject<{ [key: number]: Entry }>(
-    this.createEntryList(this.entries)
-  );
+  private entriesStream = new BehaviorSubject<{ [key: number]: Entry }>(this.entries);
 
   entries$ = this.entriesStream.asObservable().pipe(map(entries => this.createEntryList(entries)));
 
@@ -56,6 +32,11 @@ export class EntryService {
       return !selected || selected.deleted ? undefined : selected;
     })
   );
+
+  constructor(public dataService: DataService) {
+    this.dataService.connection
+      .on('RetrievedEntries', (receivedEntries: { [key: number]: Entry }) => this.entriesStream.next(receivedEntries));
+  }
 
   add(title: string, date: string, content: string): number {
     const id = Object.keys(this.entries).length;
@@ -83,3 +64,4 @@ export class EntryService {
 
 
 }
+

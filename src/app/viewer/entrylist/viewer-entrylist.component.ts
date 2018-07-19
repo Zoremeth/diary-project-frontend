@@ -1,12 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { EntryService, Entry } from '../entryservice.service';
-import { SidebarService } from '../sidebar.service';
 import { MatDialog } from '@angular/material';
-import { ViewerEntrylistDeleteDialogComponent } from '../viewer-entrylist-delete-dialog/viewer-entrylist-delete-dialog.component';
-import { ViewerEntrylistRenameDialogComponent } from '../viewer-entrylist-rename-dialog/viewer-entrylist-rename-dialog.component';
-import { Observable } from '../../../node_modules/rxjs';
-import { ViewerEntrylistAddDialogComponent } from '../viewer-entrylist-add-dialog/viewer-entrylist-add-dialog.component';
-import { ViewerEntrylistProtectDialogComponent } from '../viewer-entrylist-protect-dialog/viewer-entrylist-protect-dialog.component';
+import { Observable } from 'rxjs';
+import { Entry, EntryService } from '../shared/entryservice.service';
+import { SidebarService } from '../../shared/sidebar.service';
+import { ViewerEntrylistDeleteDialogComponent } from './delete-dialog/viewer-entrylist-delete-dialog.component';
+import { ViewerEntrylistRenameDialogComponent } from './rename-dialog/viewer-entrylist-rename-dialog.component';
+import { ViewerEntrylistAddDialogComponent } from './add-dialog/viewer-entrylist-add-dialog.component';
+import { ViewerEntrylistProtectDialogComponent } from './protect-dialog/viewer-entrylist-protect-dialog.component';
+import { DataService } from '../../shared/data.service';
+import { LoginService } from '../../login/login.service';
 
 @Component({
   selector: 'app-viewer-entrylist',
@@ -17,16 +19,18 @@ export class ViewerEntrylistComponent implements OnInit {
 
   entries$: Observable<Entry[]>;
   button = 'lock';
-  buttonClick = 'alert("Hi")';
   constructor(
     public entryService: EntryService,
     public sidebar: SidebarService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public dataService: DataService,
+    public loginService: LoginService,
   ) {
     this.entries$ = entryService.entries$;
   }
 
   ngOnInit() {
+    this.dataService.getEntries(this.loginService.currentUser);
   }
 
   delete(entry: Entry) {
@@ -72,8 +76,8 @@ export class ViewerEntrylistComponent implements OnInit {
       if (givenPassword === '') {
         givenPassword = undefined;
       }
-      if (givenPassword === entry.protected) {
-        entry.protected = undefined;
+      if (givenPassword === entry.locked) {
+        entry.locked = undefined;
         this.button = 'more_vert';
       }
     });
@@ -88,7 +92,7 @@ export class ViewerEntrylistComponent implements OnInit {
         givenPassword = undefined;
       }
       if (givenPassword !== undefined) {
-        entry.protected = givenPassword;
+        entry.locked = givenPassword;
         this.button = 'lock';
       }
     });
