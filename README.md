@@ -12,7 +12,7 @@ Instructions:
 1. Clone repo
 2. Make sure to have .NET installed
 3. ``dotnet run``
-4. Server will start at localhost bound on port 5000 & 5001
+4. Server will start at: ``http://localhost:5001/`` or ``http://localhost:5000/``
 
 ## Further help
 
