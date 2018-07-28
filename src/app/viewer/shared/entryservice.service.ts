@@ -18,7 +18,8 @@ export interface Entry {
 })
 export class EntryService {
 
-  private entries: { [key: number]: Entry } = {};
+  private entries: { [key: number]: Entry } = {
+  };
 
   private currentEntryStream = new BehaviorSubject<number>(-1);
   private entriesStream = new BehaviorSubject<{ [key: number]: Entry }>(this.entries);
@@ -35,7 +36,10 @@ export class EntryService {
 
   constructor(public dataService: DataService) {
     this.dataService.connection
-      .on('RetrievedEntries', (receivedEntries: { [key: number]: Entry }) => this.entriesStream.next(receivedEntries));
+      .on('EntriesRetrieved', (receivedEntries: { [key: number]: Entry }) => {
+        this.entries = receivedEntries;
+        this.entriesStream.next(receivedEntries);
+      });
   }
 
   add(title: string, date: string, content: string): number {
