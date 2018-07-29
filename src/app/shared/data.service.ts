@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@aspnet/signalr';
+import { SnackbarService } from './snackbar.service';
 
 @Injectable({
   providedIn: 'root'

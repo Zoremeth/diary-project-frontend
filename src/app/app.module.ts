@@ -15,7 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatCardModule } from '@angular/material/card';
-import { MatDialogModule, MatSelectModule, MatInputModule } from '@angular/material';
+import { MatDialogModule, MatSelectModule, MatInputModule, MatSnackBarModule } from '@angular/material';
 import { ViewerEntrylistDeleteDialogComponent } from './viewer/entrylist/delete-dialog/viewer-entrylist-delete-dialog.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
@@ -55,6 +55,7 @@ import { LoginRegisterComponent } from './register/login-register.component';
     MatSelectModule,
     MatInputModule,
     QuillModule,
+    MatSnackBarModule,
   ],
   entryComponents: [
     ViewerEntrylistDeleteDialogComponent,

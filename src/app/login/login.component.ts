@@ -3,6 +3,7 @@ import { LoginService } from './login.service';
 import { MatDialog } from '@angular/material';
 import { LoginRegisterComponent } from '../register/login-register.component';
 import { DataService } from '../shared/data.service';
+import { SnackbarService } from '../shared/snackbar.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginComponent implements OnInit {
   password = '';
   animation = '';
 
-  constructor(public loginService: LoginService, public dialog: MatDialog, public dataService: DataService) { }
+  constructor(public loginService: LoginService,
+    public dialog: MatDialog, public dataService: DataService, public snackBar: SnackbarService) { }
 
   ngOnInit() {
   }
@@ -23,6 +25,7 @@ export class LoginComponent implements OnInit {
   login(username: string, password: string): void {
     if (!this.loginService.login(username, password)) {
       this.animation = 'animated shake';
+      this.snackBar.openSnackbar('Incorrect username/password');
     }
   }
 
@@ -34,4 +37,5 @@ export class LoginComponent implements OnInit {
       this.loginService.addUser(data.username, data.password);
     });
   }
+
 }

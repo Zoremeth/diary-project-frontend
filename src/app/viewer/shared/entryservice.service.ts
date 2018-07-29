@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { map, withLatestFrom } from 'rxjs/operators';
 import { DataService } from '../../shared/data.service';
+import { SnackbarService } from '../../shared/snackbar.service';
 
 export interface Entry {
   id: number;
@@ -34,12 +35,18 @@ export class EntryService {
     })
   );
 
-  constructor(public dataService: DataService) {
+  constructor(public dataService: DataService, public snackBar: SnackbarService) {
     this.dataService.connection
       .on('EntriesRetrieved', (receivedEntries: { [key: number]: Entry }) => {
+        this.snackBar.openSnackbar('Entries retrieved.');
         this.entries = receivedEntries;
         this.entriesStream.next(receivedEntries);
       });
+  }
+
+  saveEntries(postid: number, content: string): void {
+    this.dataService.connection.invoke('SaveEntries', postid, content);
+    console.log('Saving');
   }
 
   add(title: string, date: string, content: string): number {
